@@ -1,1 +1,6 @@
 /* write your css here */
+
+.bg_Image{
+    background: url(./assets/Images/bghome.svg);
+    width: full;
+}

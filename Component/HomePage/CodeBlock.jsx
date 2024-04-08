@@ -27,10 +27,11 @@ function CodeBlock({position,heading,subheading,ctabtn1,ctabtn2 , codeblock,code
                </Link>
                <div>
                     <CTAButton
-                      text={ctabtn2.text}
                       active={ctabtn2.active}
                       link = {ctabtn2.link}
-                    />
+                    >
+                        {ctabtn2.text}
+                        </CTAButton>
                 </div>
             </div>    
         </div>

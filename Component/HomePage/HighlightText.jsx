@@ -7,4 +7,4 @@ function HighlightText({text}) {
   )
 }
 
-export default HighlightText
+export default HighlightText;

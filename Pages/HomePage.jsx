@@ -5,10 +5,18 @@ import HighlightText from '../Component/HomePage/HighlightText';
 import CTAButton from '../Component/HomePage/CTAButton';
 import Banner from "../assets/Images/banner.mp4"
 import CodeBlock from '../Component/HomePage/CodeBlock';
+import TimeLineSection from '../Component/HomePage/TimeLineSection';
+import LearningLanguageSection from '../Component/HomePage/LearningLanguageSection';
+import InstructorSection from '../Component/HomePage/InstructorSection';
+import Footer from '../Component/Common/Footer';
+import ExploreMore from '../Component/HomePage/ExploreMore';
+
 
 function HomePage() {
   return (
-    <div className='w-full min-h-screen pb-4  mx-auto flex flex-col '>
+    <div>
+        {/*Section 1 */}
+        <div className='w-11/12 max-w-maxContent min-h-screen pb-4  mx-auto flex flex-col '>
         {/* Section1 */}
 
         <div className='flex flex-col items-center my-8 mt-16  text-richblack-400 font-inter '>
@@ -33,8 +41,8 @@ function HomePage() {
 
             {/*CTA button sub section */}
             <div className='flex flex-row gap-4 mt-8'>
-                <CTAButton text={"Learn More"} active={true} link={"/signup"}/>
-                <CTAButton text={"Book a Demo"} active={false} link={"/login"}/>
+                <CTAButton  active={true} link={"/signup"}>Learn More</CTAButton>
+                <CTAButton active={false} link={"/login"}>Book a Demo</CTAButton>
             </div>
         </div>
 
@@ -126,6 +134,61 @@ function HomePage() {
             />
         </div>
         {/* Section5 -> card */}
+
+        <ExploreMore/>
+
+        </div>
+
+        {/*Section 2 - white background */}
+        <div className='bg-[#F9F9F9]  mx-auto min-h-screen'>
+            {/*BackgroundImage section */}
+            <div className=' object-contain bg_Image h-[350px] flex justify-center items-center mx-auto gap-7 '>
+                <CTAButton active={true} link={"/signup"}>
+                    <div className='flex items-center gap-2'>
+                        <p>Explore Full Catalog</p>
+                        <FaArrowRight/>
+                    </div>
+                </CTAButton>
+                <CTAButton active={false} link={"/login"}>
+                    Learn More
+                </CTAButton>
+            </div>
+
+            {/*Get the skill section */}
+            <div className=' mt-20 mb-14 w-11/12 mx-auto max-w-maxContent flex flex-row justify-center items-center gap-10'>
+              <div className='w-[45%] text-4xl font-semibold text-richblack-900'> 
+              Get the skills you need for a 
+              <HighlightText text={" job that is in demand."}/>
+              </div>
+
+              <div className='w-[45%] text-pure-greys-600 flex flex-col items-start gap-10'>
+                <p>The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.</p>
+                <div className='w-fit '>
+                    <CTAButton active={true} link={"/login"}>
+                        Learn More
+                    </CTAButton>
+                </div>
+              </div>
+            </div>
+
+            {/*Time line section */}
+            <div className=' w-11/12 max-w-maxContent mx-auto'>
+                <TimeLineSection/>
+                <LearningLanguageSection/>
+            </div>
+        </div>
+
+        {/*Section 3 Instructor */}
+        <div className='w-full'>
+             <InstructorSection/>
+
+             {/* Review from other learner */}
+        </div>
+
+        {/*Footer section */}
+         <div>
+            <Footer/>
+         </div>
     </div>
   )
 }
