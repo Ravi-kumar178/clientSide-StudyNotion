@@ -15,7 +15,7 @@ function LearningLanguageSection() {
         <div className='w-[55%] mx-auto font-medium text-richblack-700'>
           Using spin making learning multiple languages easy. with 20+ languages realistic voice-over, progress tracking, custom schedule and more.
         </div>
-        <div className='mt-10 flex flex-row mx-auto w-full gap-0'>
+        <div className='mt-10 flex flex-row  mx-auto w-full gap-0'>
             <img src={knowYourProgress} alt='know-your-progress' className='h-[30%] w-[35%] translate-x-12'/>
             <img src={compareWithOther} alt="compare-with-other" className='h-[30%] w-[35%] -translate-x-9 -translate-y-3'/>
             <img src={planYourLesson} alt="plan-your-lesson" className='h-[30%] w-[35%] -translate-x-40 -translate-y-2'/>

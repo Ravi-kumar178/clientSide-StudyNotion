@@ -4,3 +4,21 @@
     background: url(./assets/Images/bghome.svg);
     width: full;
 }
+
+.codeblock_gradient{
+   
+        border-width: 2px;
+        border-image-source: linear-gradient(to right bottom, #ffffff38, #ffffff00);
+        background: linear-gradient(
+          111.93deg,
+          rgba(14, 26, 45, 0.24) -1.4%,
+          rgba(17, 30, 50, 0.38) 104.96%);
+    
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .skillSectionButtonMedia{
+    margin: 0 auto;
+  }
+}
+

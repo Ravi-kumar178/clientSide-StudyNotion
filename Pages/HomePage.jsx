@@ -19,7 +19,7 @@ function HomePage() {
         <div className='w-11/12 max-w-maxContent min-h-screen pb-4  mx-auto flex flex-col '>
         {/* Section1 */}
 
-        <div className='flex flex-col items-center my-8 mt-16  text-richblack-400 font-inter '>
+        <div className='flex flex-col items-start sm:items-center my-8 mt-16  text-richblack-400 font-inter '>
             <Link to={"/signup"}>
               <div className='group hover:scale-105 transition-all duration-200 '>
                <div className=' group-hover:bg-richblack-900 flex flex-row justify-center items-center gap-2 py-1 font-medium bg-richblack-700 px-4 border-b-2 rounded-full'>
@@ -30,12 +30,12 @@ function HomePage() {
             </Link>
 
             {/*Heading sub section */}
-            <div className='mt-8 font-semibold text-3xl text-white'>
+            <div className='mt-8 font-semibold text-2xl sm:text-3xl text-white'>
               Empower Your Future with <HighlightText text ="Coding Skills"/>
             </div>
 
             {/*Sub heading sub section */}
-            <div className='w-[60%] text-center mt-4 font-medium text-richblack-200 '>
+            <div className='w-[80%] sm:w-[70%] md:w-[60%] sm:text-center mt-4 font-medium text-richblack-200 '>
                With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors. 
             </div>
 
@@ -47,18 +47,18 @@ function HomePage() {
         </div>
 
         {/* Section2 -> video */}
-        <div className='w-[80%]  mt-8 mx-auto border-b-8 border-r-8 border-r-white border-b-white rounded-bl-3xl rounded-tr-3xl'>
-            <video muted autoPlay loop className='z-10 w-full shadow-lg shadow-white'>
+        <div className='sm:w-[80%] w-[90%]  mt-8 sm:mx-auto border-b-8 border-r-8 shadow-blue-200 shadow-[10px_5px_50px_-5px] '>
+            <video muted autoPlay loop className='z-10 w-full shadow-white shadow-[10px_10px_0_0] sm:shadow-[15px_15px_0_0]  '>
                 <source src={Banner} type='video/mp4'/>
             </video>
         </div>
         {/* Section3 -> codeblock */}
 
-        <div className='w-[80%] mx-auto mt-20 '>
+        <div className='sm:w-[90%] lg:w-[80%] mx-auto mt-20 '>
             <CodeBlock
              position = {"lg:flex-row"}
              heading = {
-                <div className='text-4xl font-bold  text-richblack-5'>
+                <div className=' text-2xl sm:text-3xl font-bold  text-richblack-5'>
                     Unlock Your 
                     <HighlightText text={"Coding Potential"}/>
                     with our online courses.
@@ -95,11 +95,11 @@ function HomePage() {
 
         {/* Section4 -> codeblock */}
 
-        <div className='w-[80%] mx-auto mt-20 '>
+        <div className='sm:w-[90%] lg:w-[80%] mx-auto mt-20  '>
             <CodeBlock
              position = {"lg:flex-row-reverse"}
              heading = {
-                <div className='text-4xl font-bold  text-richblack-5'>
+                <div className='text-2xl sm:text-3xl font-bold  text-richblack-5'>
                     Start 
                     <HighlightText text={"Coding in Seconds"}/>
                     
@@ -142,7 +142,7 @@ function HomePage() {
         {/*Section 2 - white background */}
         <div className='bg-[#F9F9F9]  mx-auto min-h-screen'>
             {/*BackgroundImage section */}
-            <div className=' object-contain bg_Image h-[350px] flex justify-center items-center mx-auto gap-7 '>
+            <div className=' object-contain bg_Image h-[250px] md:h-[350px] flex justify-center items-center mx-auto gap-7 '>
                 <CTAButton active={true} link={"/signup"}>
                     <div className='flex items-center gap-2'>
                         <p>Explore Full Catalog</p>
@@ -155,15 +155,15 @@ function HomePage() {
             </div>
 
             {/*Get the skill section */}
-            <div className=' mt-20 mb-14 w-11/12 mx-auto max-w-maxContent flex flex-row justify-center items-center gap-10'>
-              <div className='w-[45%] text-4xl font-semibold text-richblack-900'> 
+            <div className=' mt-10 sm:mt-14 md:mt-16 lg:mt-20 mb-14 w-11/12 mx-auto max-w-maxContent flex flex-col  lg:flex-row justify-center items-start sm:items-center gap-4 md:gap-8 lg:gap-10'>
+              <div className=' w-[80%] text-start sm:text-center lg:text-start lg:w-[45%] sm:text-2xl text-3xl font-semibold text-richblack-900'> 
               Get the skills you need for a 
               <HighlightText text={" job that is in demand."}/>
               </div>
 
-              <div className='w-[45%] text-pure-greys-600 flex flex-col items-start gap-10'>
+              <div className=' w-[80%] lg:w-[45%] text-start sm:text-center lg:text-start  text-pure-greys-600 flex flex-col items-start gap-6 md:gap-8 lg:gap-10'>
                 <p>The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.</p>
-                <div className='w-fit '>
+                <div className=' skillSectionButtonMedia '>
                     <CTAButton active={true} link={"/login"}>
                         Learn More
                     </CTAButton>
