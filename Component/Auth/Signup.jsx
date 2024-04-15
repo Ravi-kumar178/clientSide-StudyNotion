@@ -9,8 +9,7 @@ function Signup() {
          desc1 = "Build skills for today, tomorrow, and beyond."
          desc2 = " Education to future-proof your career."
          formType = "signup"
-         image = {signupImage}
-         
+         image = {signupImage}        
          />
     </div>
   )

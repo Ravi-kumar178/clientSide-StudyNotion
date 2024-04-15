@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link , useNavigate} from 'react-router-dom';
-import {toast} from 'react-hot-toast'
+
+import { useDispatch } from 'react-redux';
+import {login} from '../../Services/Operations/auth'
  
 
-function LoginForm({setIsLoggedIn}) {
+function LoginForm() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const[accountType,setAccountType] = useState("student");
     const [formData, setFormData] = useState({email:"",password:""});
-    const[showPassword, setShowPassword] = useState("false");
+    const[showPassword, setShowPassword] = useState(false);
     console.log(accountType)
     function changeHandler(event){
         setFormData((prevData)=>{
@@ -23,9 +26,7 @@ function LoginForm({setIsLoggedIn}) {
     
     function onSubmitHandler(event){
         event.preventDefault();
-        setIsLoggedIn(true);
-        navigate("/dashboard");
-        toast.success("Logged in");
+        dispatch(login(formData.email,formData.password,navigate));
     }
 
   return (
@@ -35,15 +36,24 @@ function LoginForm({setIsLoggedIn}) {
            className='flex flex-col gap-10 w-full'
            onSubmit={onSubmitHandler}
            >
-                <div className='flex flex-row items-center justify-center py-1 px-3 gap-3 bg-richblack-700  rounded-full
-                               shadow-sm shadow-white w-fit'>
-                    <div className={`${accountType==="student"?" bg-richblack-900 text-richblack-5  px-4 py-1 rounded-full transition-all duration-200":""}`}
-                     onClick={()=>{setAccountType("student")}}>Student</div>
+               <div className="flex flex-row items-center justify-center gap-3 py-1 px-3 bg-richblack-700 rounded-full shadow-sm shadow-white w-fit">
+                    <button
+                        onClick={() => setAccountType("student")}
+                        className={`cursor-pointer px-4 py-1 rounded-full transition-all duration-200 focus:outline-none 
+                            ${accountType === "student" ? "bg-richblack-900 text-richblack-5" : "text-richblack-25 hover:bg-richblack-600"}`}
+                    >
+                        Student
+                    </button>
 
-                    <div
-                     className={`${accountType==="instructor"?" bg-richblack-900 text-richblack-5 px-4 py-1 rounded-full transition-all duration-200":""}`}
-                    onClick={()=>{setAccountType("instructor")}}>Instructor</div>
-                </div>
+                    <button
+                        onClick={() => setAccountType("instructor")}
+                        className={`cursor-pointer px-4 py-1 rounded-full transition-all duration-200 focus:outline-none
+                            ${accountType === "instructor" ? "bg-richblack-900 text-richblack-5" : "text-richblack-25 hover:bg-richblack-600"}`}
+                    >
+                        Instructor
+                    </button>
+               </div>
+
 
                <div className='flex flex-col gap-6 w-full'> 
             
@@ -66,7 +76,7 @@ function LoginForm({setIsLoggedIn}) {
 
                     <input
                      required
-                     type={showPassword?"password":"text"}
+                     type={showPassword?'text':'password'}
                      placeholder='Enter Password'
                      name='password'
                      onChange={changeHandler}
@@ -74,20 +84,20 @@ function LoginForm({setIsLoggedIn}) {
                      className='w-full bg-richblack-700 py-2 px-2 shadow shadow-richblack-200 rounded-md'
                     />
 
-                    <span onClick={(prev)=>{setShowPassword(!prev)}}
-                     className='w-full absolute left-2 top-5'>
+                    <span onClick={()=>(setShowPassword(!showPassword))}
+                     className=' absolute right-2 top-1/2 transform translate-y-1.5 cursor-pointer'>
                         {
-                            showPassword?<AiOutlineEye/>:
-                                         <AiOutlineEyeInvisible/>
+                            showPassword?<AiOutlineEyeInvisible/>:
+                                         <AiOutlineEye/>
                         }
                     </span>
 
-                     <Link to={"/forget-password"}>
-                         <div>Forget Password</div>
+                     <Link to={"/forgot-password"}>
+                         <div className='font-inter absolute right-2 text-sm font-normal text-blue-200'>Forgot Password</div>
                      </Link>
                 </label>
 
-                <button type='submit'>
+                <button type='submit' className='w-full bg-yellow-50 text-xl text-richblack-900 py-2 rounded-lg my-8 shadow-inner font-inter'>
                     Sign in
                 </button>
              </div>

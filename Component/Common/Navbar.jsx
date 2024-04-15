@@ -9,26 +9,20 @@ import { apiConnector } from '../../Services/apiConnector'
 import { categories } from '../../Services/api'
 import { IoIosArrowDown } from "react-icons/io";
 
-const subLink = [
-    {
-        title:"Python",
-        link:"/catalog/python"
-    },
-    {
-        title:"Web Devlopment",
-        link:"/catalog/webdevlopment"
-    }
-];
+
 
 function Navbar() {
 
     //call to db for categories fetching
-    /* const[subLink, setSubLink] = useState([]);
+    const[subLink, setSubLink] = useState([]);
     const fetchSubLink = async()=>{
         try{
+            console.log(categories.CATEGORIES_API);
             const result = await apiConnector("GET",categories.CATEGORIES_API);
-            console.log(result);
+            /* console.log(result);
+            console.log(result.data.data); */
             setSubLink(result.data.data);
+            /* console.log(subLink); */
         }
         catch(err){
             console.log("Could not fetch the categories list")
@@ -37,14 +31,14 @@ function Navbar() {
 
     useEffect(()=>{
         fetchSubLink();
-    },[]); */
+    },[]); 
 
 
     //import from redux store
     const {token} = useSelector((state)=> state.auth);
     const {user} = useSelector((state)=> state.profile);
     const {totalItem} = useSelector((state)=> state.cart);
-
+    
     const location = useLocation();
     function matchRoute(route){
         return matchPath({path:route},location.pathname);
@@ -76,9 +70,10 @@ function Navbar() {
                                                  </div>   
                                                        { subLink.length > 0 && (
                                                             subLink.map((sublink,index)=>{
+                                                                /* console.log(sublink); */
                                                                 return(
-                                                                    <Link to={sublink.link} key={index} className=''>
-                                                                       <p className=''>{sublink.title}</p> 
+                                                                    <Link to={"/catalog/"+sublink.name.toLowerCase().split(" ").join("-")} key={index} className=''>
+                                                                       <p className=''>{sublink.name}</p> 
                                                                     </Link>
                                                                 )
                                                             })
@@ -105,7 +100,7 @@ function Navbar() {
             {/* login/signup/dashboard */}
             <div className='flex items-center gap-x-6'>
                 {
-                    user && user?.accountType != "Instructor" &&(
+                    user && user?.accountType !== "Instructor" &&(
                         <Link to={"/dashboard/cart"} className='relative'>
                             <AiOutlineShoppingCart/>
                             {

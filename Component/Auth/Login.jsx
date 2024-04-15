@@ -11,7 +11,6 @@ function Login({setIsLoggedIn}) {
          desc2 = " Education to future-proof your career."
          formType = "login"
          image = {loginImg}
-         setIsLoggedIn={setIsLoggedIn}
          />
     </div>
   )
