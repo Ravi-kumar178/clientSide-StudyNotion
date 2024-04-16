@@ -3,8 +3,9 @@ import {setLoading, setSignupData, setToken} from '../../Slices/AuthSlice'
 import {apiConnector} from '../apiConnector'
 import { endPoints } from '../api'
 import { setUser } from '../../Slices/profileSlice';
+import { resetCart } from '../../Slices/cartSlice';
 
-const {LOGIN_API , SENDOTP_API} = endPoints;
+const {LOGIN_API , SENDOTP_API, GETPASSWORDTOKEN_API, RESET_PASSWORD_API, SIGNUP_API} = endPoints;
 
 export function login(email, password, navigate){
     return async(dispatch) => {
@@ -41,16 +42,18 @@ export function login(email, password, navigate){
 }
 
 export function sendOTP(email,navigate){
-    /* console.log("send otp"); */
+     console.log("send otp"); 
     return async(dispatch)=>{
+        console.log("email: ",email);
         let toastId = toast.loading("Sending...");
-        setLoading(true);
+        dispatch( setLoading(true));
 
         try{
             
             const response = await apiConnector("POST",SENDOTP_API,{email});
-            /* console.log("Response: ", response); */
-            if(!response.status.success){
+            console.log("Response: ", response);
+            console.log(response.data.success);
+            if(!response.data.success){
                 throw new Error(response.data.message);
             }
             toast.success("OTP sent");
@@ -61,6 +64,93 @@ export function sendOTP(email,navigate){
             toast.error("Request failed");
         }
         toast.dismiss(toastId);
+        dispatch(setLoading(false));
+    }
+}
+
+export function getPasswordToken(email,setEmailSent){
+    return async(dispatch)=>{
+        let toastId = toast.loading("Loading...");
+        setLoading(true);
+        console.log(email);
+        try{
+            const response = await apiConnector("POST",GETPASSWORDTOKEN_API,{email});
+            console.log("response: ", response);
+            /* console.log(response.data.message); */
+            if(!response.data.success){
+                throw new Error(response.data.message);
+            }
+            setEmailSent(true);
+            toast.success("check your mail");
+        }
+        catch(err){
+             console.log("Error while sending mail");
+             toast.error("Error in Sending mail");
+        }
+        toast.dismiss(toastId);
         setLoading(false);
+    }
+}
+
+export function logout(navigate){
+    return async(dispatch)=>{
+        dispatch(setToken(null));
+        dispatch(setUser(null));
+        dispatch(resetCart(null));
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("cart");
+        localStorage.removeItem("user");
+        toast.success("Logged out");
+        navigate("/");
+    }
+}
+
+export function resetPassword(password,confirmPassword,token,navigate){
+    return async(dispatch)=>{
+        let toastId = toast.loading("Loading...");
+         dispatch(setLoading(true));
+        try{
+            const response = await apiConnector("POST",RESET_PASSWORD_API,{password,confirmPassword,token});
+            console.log("response: ", response);
+            if(!response.data.success){
+                throw new Error(response.data.message);
+            }
+            toast.success(response.data.message);
+            navigate("/login");
+        }
+        catch(err){
+            console.log("error", err.message);
+            toast.error("Request Failed");
+        }
+        toast.dismiss(toastId);
+        dispatch(setLoading(false));
+    }
+}
+
+export function signup(accountType,firstName,lastName,email,password,confirmPassword,otp,navigate)
+{
+    return async(dispatch)=>{
+        let toastId = toast.loading("Loading...");
+        dispatch(setLoading(true));
+        console.log(accountType,firstName,lastName,email,password,confirmPassword,otp);
+        try{
+            const response = await apiConnector("POST",SIGNUP_API,{
+                accountType,firstName,lastName,email,password,confirmPassword,otp
+            });
+            console.log("response: ", response);
+
+            if(!response.data.success){
+                throw new Error(response.data.message);
+            }
+            toast.success("User is registered");
+            navigate("/login");
+        }
+        catch(e){
+            toast.error("Request Failed");
+            console.log("error: ",e.message);
+        }
+        toast.dismiss(toastId);
+        dispatch(setLoading(false));
     }
 }

@@ -6,6 +6,9 @@ import Signup from "./Component/Auth/Signup";
 
 import Navbar from "./Component/Common/Navbar";
 import OpenRoute from "./Component/Auth/OpenRoute";
+import ForgotPassword from "./Pages/ForgotPassword";
+import UpdatePassword from "./Pages/UpdatePassword";
+import VerifyEmail from "./Pages/VerifyEmail";
 
 function App() {
 
@@ -19,17 +22,33 @@ function App() {
 
           <Route path="/login" 
              element={
-               <OpenRoute>
+               
                    <Login/>
-               </OpenRoute>
+               
              }/>
 
           <Route path="/signup" element={
-            <OpenRoute>
+            
                 <Signup/>
-            </OpenRoute>
+            
           }/>
 
+          <Route path="/forgot-password" element={
+
+              <ForgotPassword/>
+
+          }
+          />
+
+          <Route path="/update-password/:id" element={
+              <UpdatePassword/>
+          }/>
+
+          <Route path="/verify-email" element={
+                <VerifyEmail/>
+            } />
+
+            
        </Routes>
     </div>
   );

@@ -11,7 +11,7 @@ function LoginForm() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const[accountType,setAccountType] = useState("student");
+    const[accountType,setAccountType] = useState("Student");
     const [formData, setFormData] = useState({email:"",password:""});
     const[showPassword, setShowPassword] = useState(false);
     console.log(accountType)
@@ -38,17 +38,17 @@ function LoginForm() {
            >
                <div className="flex flex-row items-center justify-center gap-3 py-1 px-3 bg-richblack-700 rounded-full shadow-sm shadow-white w-fit">
                     <button
-                        onClick={() => setAccountType("student")}
+                        onClick={() => setAccountType("Student")}
                         className={`cursor-pointer px-4 py-1 rounded-full transition-all duration-200 focus:outline-none 
-                            ${accountType === "student" ? "bg-richblack-900 text-richblack-5" : "text-richblack-25 hover:bg-richblack-600"}`}
+                            ${accountType === "Student" ? "bg-richblack-900 text-richblack-5" : "text-richblack-25 hover:bg-richblack-600"}`}
                     >
                         Student
                     </button>
 
                     <button
-                        onClick={() => setAccountType("instructor")}
+                        onClick={() => setAccountType("Instructor")}
                         className={`cursor-pointer px-4 py-1 rounded-full transition-all duration-200 focus:outline-none
-                            ${accountType === "instructor" ? "bg-richblack-900 text-richblack-5" : "text-richblack-25 hover:bg-richblack-600"}`}
+                            ${accountType === "Instructor" ? "bg-richblack-900 text-richblack-5" : "text-richblack-25 hover:bg-richblack-600"}`}
                     >
                         Instructor
                     </button>

@@ -102,7 +102,7 @@ function Navbar() {
                 {
                     user && user?.accountType !== "Instructor" &&(
                         <Link to={"/dashboard/cart"} className='relative'>
-                            <AiOutlineShoppingCart/>
+                            <AiOutlineShoppingCart className=' text-richblack-5 text-xl'/>
                             {
                                 totalItem>0 && (
                                     <span className='absolute -top-2 right-1'>{totalItem}</span>
