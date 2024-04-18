@@ -9,6 +9,7 @@ import OpenRoute from "./Component/Auth/OpenRoute";
 import ForgotPassword from "./Pages/ForgotPassword";
 import UpdatePassword from "./Pages/UpdatePassword";
 import VerifyEmail from "./Pages/VerifyEmail";
+import Contact from "./Pages/Contact";
 
 function App() {
 
@@ -47,6 +48,8 @@ function App() {
           <Route path="/verify-email" element={
                 <VerifyEmail/>
             } />
+
+          <Route path="/contact" element={<Contact/>} />  
 
             
        </Routes>
