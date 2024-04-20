@@ -35,6 +35,13 @@ export const sidebarLinks = [
     icon: "VscMortarBoard",
   },
   {
+    id: 5,
+    name: "Wishlist",
+    path: "/dashboard/wishlist",
+    type: ACCOUNT_TYPE.STUDENT,
+    icon: "VscBookmark",
+  },
+  {
     id: 6,
     name: "Purchase History",
     path: "/dashboard/purchase-history",

@@ -10,10 +10,16 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import UpdatePassword from "./Pages/UpdatePassword";
 import VerifyEmail from "./Pages/VerifyEmail";
 import Contact from "./Pages/Contact";
+import About from "./Pages/About";
+import PrivateRoute from './Component/Auth/PrivateRoute'
+import Dashboard from "./Pages/Dashboard";
+import { ACCOUNT_TYPE } from "./utils/constants";
+import { useSelector } from "react-redux";
+import MyProfile from "./Component/Dashboard/MyProfile";
 
 function App() {
 
-
+  const {user} = useSelector((state)=>state.auth);
 
   return (
     <div className=" w-screen h-screen overflow-x-hidden mx-auto bg-richblack-900">
@@ -49,9 +55,23 @@ function App() {
                 <VerifyEmail/>
             } />
 
-          <Route path="/contact" element={<Contact/>} />  
+          <Route path="/contact" element={<Contact/>} /> 
 
+          <Route path="/about" element= {<About/>}/> 
+          
+          <Route element={
+            <PrivateRoute>
+               <Dashboard/>
+            </PrivateRoute>
+          } >
             
+           
+             <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
+              
+            
+
+          </Route>
+
        </Routes>
     </div>
   );

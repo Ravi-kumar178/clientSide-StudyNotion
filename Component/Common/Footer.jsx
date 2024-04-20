@@ -37,7 +37,7 @@ const policy = ["Privacy Policy","Cookie Policy","Terms"];
 
 function Footer() {
   return (
-    <div className='w-full bg-richblack-700 font-inter mx-auto pt-10 pb-10'>
+    <div className='w-full bg-richblack-800 font-inter mx-auto pt-10 pb-10'>
         <div className='w-11/12 max-w-maxContent min-h-fit flex flex-col mx-auto gap-10'>
             {/* upper div */}
             <div className='flex flex-row gap-8 mx-auto'>
