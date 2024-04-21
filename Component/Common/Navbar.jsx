@@ -70,9 +70,9 @@ function Navbar() {
                                                  </div>   
                                                        { subLink.length > 0 && (
                                                             subLink.map((sublink,index)=>{
-                                                                /* console.log(sublink); */
+                                                                /*  console.log(sublink);  */
                                                                 return(
-                                                                    <Link to={"/catalog/"+sublink.name.toLowerCase().split(" ").join("-")} key={index} className=''>
+                                                                    <Link to={`/catalog/${sublink.name.toLowerCase().split(" ").join("-")}`} key={index} className=''>
                                                                        <p className=''>{sublink.name}</p> 
                                                                     </Link>
                                                                 )

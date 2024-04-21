@@ -1,7 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../Component/Dashboard/Sidebar'
-import MyProfile from '../Component/Dashboard/MyProfile'
 import Footer from '../Component/Common/Footer'
 
 function Dashboard() {

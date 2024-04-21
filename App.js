@@ -16,11 +16,13 @@ import Dashboard from "./Pages/Dashboard";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import { useSelector } from "react-redux";
 import MyProfile from "./Component/Dashboard/MyProfile";
+import Wishlist from "./Component/Dashboard/Wishlist";
+import Settings from "./Component/Dashboard/Settings";
 
 function App() {
 
-  const {user} = useSelector((state)=>state.auth);
-
+  const {user} = useSelector((state)=>state.profile);
+  console.log("user: ",user);
   return (
     <div className=" w-screen h-screen overflow-x-hidden mx-auto bg-richblack-900">
       <Navbar/>
@@ -60,15 +62,21 @@ function App() {
           <Route path="/about" element= {<About/>}/> 
           
           <Route element={
-            <PrivateRoute>
-               <Dashboard/>
-            </PrivateRoute>
+                  <PrivateRoute>
+                     <Dashboard/>
+                  </PrivateRoute>
           } >
             
            
-             <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
+            <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
+            <Route path="/dashboard/settings" element={<Settings/>}/>
               
-            
+            {
+               user?.accountType === ACCOUNT_TYPE.STUDENT &&
+               (
+                  <Route path="/dashboard/wishlist" element={<Wishlist/>} />
+               )
+            }
 
           </Route>
 
