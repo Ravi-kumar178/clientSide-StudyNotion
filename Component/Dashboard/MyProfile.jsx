@@ -57,7 +57,7 @@ function MyProfile() {
                                     rounded-md border-[1px] border-richblack-700'>
                         <div className='  flex gap-x-4 items-center'>
                             <div className='w-full'>
-                                <img src={user?.image} alt='User' className='w-20 aspect-square rounded-full'/>
+                                <img src={user?.image} alt='User'             className="aspect-square w-[78px] rounded-full object-cover"/>
                             </div>
 
                             <div className=' flex flex-col gap-y-1'>
@@ -85,7 +85,11 @@ function MyProfile() {
                                     rounded-md border-[1px] border-richblack-700'>
                         <div className='flex flex-col gap-y-4'>
                             <p  className='font-inter text-richblack-5  text-lg font-semibold'>About</p>
-                            <p className='font-inter text-richblack-200 font-normal text-sm'>Write something about yourself</p>
+                            <p className='font-inter text-richblack-200 font-normal text-sm'>
+                                {
+                                    user?.additionalDetails?.about ? (<span>{user?.additionalDetails?.about}</span>):(<span>Write something about yourself</span>)
+                                }
+                            </p>
                         </div>
                         
                         <Link to={"/dashboard/settings"}>
@@ -124,7 +128,7 @@ function MyProfile() {
                                     <div>
                                         {
                                             user.additionalDetails.contactNumber ?
-                                             (<p className='font-inter text-richblack-5 font-medium'>user?.additionalDetails?.contactNumber</p>)
+                                             (<p className='font-inter text-richblack-5 font-medium'>{user?.additionalDetails?.contactNumber}</p>)
                                              :
                                              (<p className='font-inter text-richblack-5 font-medium'>(+91) **********</p>)
                                             

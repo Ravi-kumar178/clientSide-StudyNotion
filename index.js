@@ -8,10 +8,12 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./Reducer";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const store = configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    
 })
 
 root.render(

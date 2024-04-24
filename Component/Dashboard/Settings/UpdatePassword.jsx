@@ -1,110 +1,134 @@
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux';
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { changePassword } from '../../../Services/Operations/SettingsAPI';
+import toast from 'react-hot-toast';
 
-import { changePassword } from "../../../Services/Operations/SettingsAPI"
-import IconBtn from "../../Common/IconBtn"
+function UpdatePassword() {
 
-export default function UpdatePassword() {
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
+  const[showOldPassword, setShowOldPassword] = useState(false);
+  const[showNewPassword, setShowNewPassword] = useState(false);
+  const[showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
 
-  const [showOldPassword, setShowOldPassword] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
+  const{register, handleSubmit, formState:{errors} } = useForm();
+  const {user} = useSelector((state)=>state.profile);
+  console.log("user: ",user);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+  const {token} = useSelector((state)=>state.auth);
+  
 
-  const submitPasswordForm = async (data) => {
-    // console.log("password Data - ", data)
-    try {
-      await changePassword(token, data)
-    } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+  async function onSubmitHandler(data){
+    try{
+       await changePassword(token,data);
+    }
+    catch(err){
+      console.log("error message: ",err.message);
     }
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-          <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
-          <div className="flex flex-col gap-5 lg:flex-row">
-            <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="oldPassword" className="lable-style">
-                Current Password
-              </label>
-              <input
-                type={showOldPassword ? "text" : "password"}
-                name="oldPassword"
-                id="oldPassword"
-                placeholder="Enter Current Password"
-                className="form-style"
-                {...register("oldPassword", { required: true })}
-              />
-              <span
-                onClick={() => setShowOldPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
-              >
-                {showOldPassword ? (
-                  <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-                ) : (
-                  <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-                )}
-              </span>
-              {errors.oldPassword && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your Current Password.
-                </span>
-              )}
-            </div>
-            <div className="relative flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="newPassword" className="lable-style">
-                New Password
-              </label>
-              <input
-                type={showNewPassword ? "text" : "password"}
-                name="newPassword"
-                id="newPassword"
-                placeholder="Enter New Password"
-                className="form-style"
-                {...register("newPassword", { required: true })}
-              />
-              <span
-                onClick={() => setShowNewPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
-              >
-                {showNewPassword ? (
-                  <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-                ) : (
-                  <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-                )}
-              </span>
-              {errors.newPassword && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your New Password.
-                </span>
-              )}
-            </div>
+    <div className=' w-full mt-6 bg-richblack-800 border-[1px] border-richblack-700 p-6 rounded-md
+    flex flex-col gap-y-6'>
+        <div className='w-full font-inter font-semibold text-lg text-richblack-50'>Password</div>
+
+        <form 
+         onSubmit={handleSubmit(onSubmitHandler)}
+        className='w-full'>
+          <div className='w-full flex flex-row items-center gap-x-5'>
+                <div className='w-full flex flex-col gap-y-1'>
+                    <label htmlFor='oldPassword'  className='text-richblack-50 font-inter font-medium text-sm'>Current Password<sup className='font-normal  text-[#EF476F]'>*</sup></label>
+                    <div className='relative'>
+                      <input
+                      type={showOldPassword?"text":"password"}
+                      name='oldPassword'
+                      id='oldPassword'
+                      placeholder='*******'
+                      {...register("oldPassword",{required:true})}
+                      className='w-full text-richblack-200 bg-richblack-700 p-2 shadow-inner border-b-[1px] border-b-richblack-400 rounded-md'
+                      />
+                      <span
+                      onClick={()=>(setShowOldPassword(!showOldPassword))}
+                      className='absolute bottom-3 right-4 text-richblack-200'>
+                        {
+                          showOldPassword?(<AiOutlineEyeInvisible/>):(<AiOutlineEye/>)
+                        }
+                      </span>
+                      {
+                        errors.oldPassword && (
+                          <span>old password is required</span>
+                        )
+                      }
+                    </div>
+                </div>
+
+                <div className='w-full flex flex-col gap-y-1'>
+                    <label htmlFor='newPassword' className='text-richblack-50 font-inter font-medium text-sm'>New Password<sup className='font-normal  text-[#EF476F]'>*</sup></label>
+                    <div className=' relative'>
+                      <input
+                      type={showNewPassword?"text":"password"}
+                      name='newPassword'
+                      id='newPassword'
+                      placeholder='*******'
+                      {...register("newPassword",{required:true})}
+                      className='w-full text-richblack-200 bg-richblack-700 p-2 shadow-inner border-b-[1px] border-b-richblack-400 rounded-md'
+                      />
+
+                      <span
+                      onClick={()=>(setShowNewPassword(!showNewPassword))}
+                      className='absolute bottom-3 right-4 text-richblack-200'>
+                        {
+                          showNewPassword?(<AiOutlineEyeInvisible/>):(<AiOutlineEye/>)
+                        }
+                      </span>
+                      {
+                        errors.newPassword && (
+                          <span>New password is required</span>
+                        )
+                      }
+                    </div>
+                </div>
+
+                <div className='w-full flex flex-col gap-y-1'>
+                    <label htmlFor='confirmNewPassword' className='text-richblack-50 font-inter font-medium text-sm'>Confirm New Password<sup className='font-normal  text-[#EF476F]'>*</sup></label>
+                    <div className=' relative'>
+                      <input
+                      type={showConfirmNewPassword?"text":"password"}
+                      name='confirmNewPassword'
+                      id='confirmNewPassword'
+                      placeholder='********'
+                      {...register("confirmNewPassword",{required:true})}
+                      className='w-full text-richblack-200 bg-richblack-700 p-2 shadow-inner border-b-[1px] border-b-richblack-400 rounded-md'
+                      />
+
+                      <span
+                      onClick={()=>(setShowConfirmNewPassword(!showConfirmNewPassword))}
+                      className='absolute bottom-3 right-4 text-richblack-200'>
+                        {
+                          showConfirmNewPassword?(<AiOutlineEyeInvisible/>):(<AiOutlineEye/>)
+                        }
+                      </span>
+                      {
+                        errors.confirmNewPassword &&(
+                          <span>Confirm new password</span>
+                        )
+                      }
+                    </div>
+                </div>
+
+               
           </div>
-        </div>
-        <div className="flex justify-end gap-2">
-          <button
-            onClick={() => {
-              navigate("/dashboard/my-profile")
-            }}
-            className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
-          >
-            Cancel
-          </button>
-          <IconBtn type="submit" text="Update" />
-        </div>
-      </form>
-    </>
+
+               <div className='w-full translate-x-[90%]'>
+               <button
+                className=' mt-10  bg-yellow-50 shadow-inner p-2 px-5 rounded-md text-richblack-900 font-inter'
+                type='submit'>
+                    Save
+                </button>
+               </div>
+        </form>
+    </div>
   )
 }
+
+export default UpdatePassword

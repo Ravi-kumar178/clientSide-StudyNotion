@@ -5,6 +5,7 @@ import { apiConnector } from "../apiConnector"
 import { settingsEndpoints } from "../api"
 import { logout } from "./auth"
 
+
 const {
   UPDATE_DISPLAY_PICTURE_API,
   UPDATE_PROFILE_API,
@@ -47,38 +48,51 @@ export function updateDisplayPicture(token, formData) {
 }
 
 export function updateProfile(token, formData) {
+
+  console.log("formData: ", formData);
+  const {firstName, lastName,about,contactNumber,gender,dateOfBirth} = formData;
+  console.log("contactNumber: ",contactNumber);
+
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     try {
-      const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
-        Authorization: `Bearer ${token}`,
-      })
+      const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, { Authorization: `Bearer ${token}`, })
       console.log("UPDATE_PROFILE_API API RESPONSE............", response)
 
-      if (!response.data.success) {
+      if(!response.data.success) {
         throw new Error(response.data.message)
       }
-      const userImage = response.data.updatedUserDetails.image
-        ? response.data.updatedUserDetails.image
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updatedUserDetails.firstName} ${response.data.updatedUserDetails.lastName}`
-      dispatch(
-        setUser({ ...response.data.updatedUserDetails, image: userImage })
-      )
-      toast.success("Profile Updated Successfully")
-    } catch (error) {
+      toast.success("Profile Updated Successfully");
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log("user in update profile operation: ",user);
+      user.firstName = firstName || user.firstName;
+      user.lastName = lastName || user.lastName;
+      user.additionalDetails.dateOfBirth = dateOfBirth ||user.additionalDetails.dateOfBirth;
+      user.additionalDetails.contactNumber = contactNumber || user.additionalDetails.contactNumber;
+      user.additionalDetails.gender = gender || user.additionalDetails.gender;
+      user.additionalDetails.about = about || user.additionalDetails.about;
+
+      localStorage.setItem("user",JSON.stringify(user));
+    } 
+    catch (error) {
       console.log("UPDATE_PROFILE_API API ERROR............", error)
       toast.error("Could Not Update Profile")
     }
     toast.dismiss(toastId)
   }
-}
+} 
 
 export async function changePassword(token, formData) {
   const toastId = toast.loading("Loading...")
+  console.log("token: ",token);
+  
+  console.log("formData: ",formData);
+  const {oldPassword,newPassword,confirmNewPassword} = formData;
   try {
-    const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
-      Authorization: `Bearer ${token}`,
-    })
+    const response = await apiConnector("POST", CHANGE_PASSWORD_API, {oldPassword,newPassword,confirmNewPassword},
+    { Authorization: `Bearer ${token}` }
+    )
     console.log("CHANGE_PASSWORD_API API RESPONSE............", response)
 
     if (!response.data.success) {

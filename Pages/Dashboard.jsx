@@ -2,8 +2,13 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../Component/Dashboard/Sidebar'
 import Footer from '../Component/Common/Footer'
+import { useSelector } from 'react-redux'
+import { ACCOUNT_TYPE } from '../utils/constants'
+
 
 function Dashboard() {
+  const{user} =useSelector((state)=>state.profile);
+  console.log(user);
   return (
     <div>
       <div className='relative flex flex-row gap-x-4 '>
@@ -16,7 +21,7 @@ function Dashboard() {
            </div>
         </div>
      </div>
-      <Footer/>
+      {user.accountType === ACCOUNT_TYPE.STUDENT && <Footer/>}
     </div>
   )
 }

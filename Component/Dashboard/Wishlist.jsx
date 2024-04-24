@@ -119,14 +119,14 @@ function Wishlist() {
                             )
                             :
                             (
-                                toast.error("No Course is present"),
+                               /*  toast.error("No Course is present"), */
                             <div className='text-richblack-100 font-inter text-2xl dont-semibold'>
                                 No Course is added to the wishlist
                             </div>
                             )
                         }
                     </div>
-
+                        
                     <div className='w-[20%] bg-richblack-800 border-[1px] border-richblack-700 p-4 rounded-md
                                    flex flex-col gap-y-3'>
                         <p className=' text-richblack-5 font-semibold text-sm font-inter'>Total:</p>

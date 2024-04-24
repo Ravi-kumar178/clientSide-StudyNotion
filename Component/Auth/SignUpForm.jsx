@@ -137,7 +137,7 @@ function SignUpForm() {
 
                     <input
                      placeholder='12345 67890'
-                      type='number'
+                      type='tel'
                       className='w-[75%] bg-richblack-700 p-2 shadow-inner border-b-[1px] border-b-richblack-400 rounded-md'
                     />
                   </div>

@@ -17,7 +17,8 @@ import { ACCOUNT_TYPE } from "./utils/constants";
 import { useSelector } from "react-redux";
 import MyProfile from "./Component/Dashboard/MyProfile";
 import Wishlist from "./Component/Dashboard/Wishlist";
-import Settings from "./Component/Dashboard/Settings";
+import Settings from "./Component/Dashboard/Settings/Index";
+import AddCourse from './Component/Dashboard/AddCourse'
 
 function App() {
 
@@ -75,6 +76,13 @@ function App() {
                user?.accountType === ACCOUNT_TYPE.STUDENT &&
                (
                   <Route path="/dashboard/wishlist" element={<Wishlist/>} />
+               )
+            }
+
+            {
+               user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && 
+               (
+                  <Route path="/dashboard/add-course" element={<AddCourse/>}/>
                )
             }
 
