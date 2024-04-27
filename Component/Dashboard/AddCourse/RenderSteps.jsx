@@ -2,6 +2,7 @@ import React from 'react'
 import { FaCheck } from 'react-icons/fa';
 import { useSelector } from 'react-redux'
 import CourseInformation from './CourseInformation';
+import CourseBuilder from './CourseBuilder/CourseBuilder';
 
 
 const steps = [
@@ -73,6 +74,7 @@ function RenderSteps() {
 
       <div className='w-full'>
          {step === 1 && <CourseInformation/>}
+         {step === 2 && <CourseBuilder/>}
       </div>
     </div>
   )

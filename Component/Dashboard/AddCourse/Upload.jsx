@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-const Upload = ({name, register, errors, setValue}) => {
+const Upload = ({name,label, register, errors, setValue}) => {
     const [image, setimage] = useState(null)
     const {editCourse, course} = useSelector((state) => state.course);
 
@@ -43,7 +43,7 @@ const Upload = ({name, register, errors, setValue}) => {
                 <div className="flex flex-col space-y-2">
   <label className="text-sm text-richblack-5" >
     <div>
-    Course Thumbnail <sup className="text-pink-200">*</sup>
+    {label} <sup className="text-pink-200">*</sup>
     </div>
   
   <div className="mt-2 bg-richblack-700 flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500">

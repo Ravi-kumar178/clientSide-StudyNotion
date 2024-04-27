@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 function ChipInput({label,name,placeholder,register,errors,setValue,getValues}) {
 
     const [tags,setTags] = useState([]);
-    console.log(tags);
+    /* console.log(tags); */
     const{course,editCourse} = useSelector((state)=>state.course)
 
     useEffect(()=>{

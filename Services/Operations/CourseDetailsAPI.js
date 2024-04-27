@@ -5,6 +5,8 @@ import { updateCompletedLectures } from "../../Slices/ViewCourseSlice";  */
 /* import { setLoading } from "../../slices/profileSlice"; */
 import { apiConnector } from "../apiConnector";
 import { courseEndpoints } from "../api";
+import { useDispatch } from "react-redux";
+import { setCourse } from "../../Slices/CourseSlice";
 
 
 const {
@@ -137,12 +139,13 @@ export const editCourseDetails = async (data, token) => {
 };
 
 // create a section
-/* export const createSection = async (data, token) => {
+  export const createSection = async (data, token) => {
+  
   let result = null;
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", CREATE_SECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("CREATE SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -157,15 +160,15 @@ export const editCourseDetails = async (data, token) => {
   }
   toast.dismiss(toastId);
   return result;
-}; */
+}; 
 
 // create a subsection
-/* export const createSubSection = async (data, token) => {
+  export const createSubSection = async (data, token) => {
   let result = null;
   const toastId = toast.loading("Uploading...");
   try {
     const response = await apiConnector("POST", CREATE_SUBSECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("CREATE SUB-SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -179,15 +182,15 @@ export const editCourseDetails = async (data, token) => {
   }
   toast.dismiss(toastId);
   return result;
-}; */
+}; 
 
 // update a section
-/* export const updateSection = async (data, token) => {
+  export const updateSection = async (data, token) => {
   let result = null;
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", UPDATE_SECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("UPDATE SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -202,15 +205,15 @@ export const editCourseDetails = async (data, token) => {
   }
   toast.dismiss(toastId);
   return result;
-}; */
+}; 
 
 // update a subsection
-/* export const updateSubSection = async (data, token) => {
+  export const updateSubSection = async (data, token) => {
   let result = null;
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", UPDATE_SUBSECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("UPDATE SUB-SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -225,14 +228,14 @@ export const editCourseDetails = async (data, token) => {
   toast.dismiss(toastId);
   return result;
 };
- */
+ 
 // delete a section
-/* export const deleteSection = async (data, token) => {
+  export const deleteSection = async (data, token) => {
   let result = null;
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", DELETE_SECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("DELETE SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -247,14 +250,14 @@ export const editCourseDetails = async (data, token) => {
   }
   toast.dismiss(toastId);
   return result;
-}; */
+}; 
 // delete a subsection
-/* export const deleteSubSection = async (data, token) => {
+  export const deleteSubSection = async (data, token) => {
   let result = null;
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", DELETE_SUBSECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("DELETE SUB-SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -269,7 +272,7 @@ export const editCourseDetails = async (data, token) => {
   }
   toast.dismiss(toastId);
   return result;
-}; */
+}; 
 
 // fetching all courses under a specific instructor
 /* export const fetchInstructorCourses = async (token) => {

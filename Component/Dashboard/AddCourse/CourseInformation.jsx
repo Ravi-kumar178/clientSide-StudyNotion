@@ -11,6 +11,7 @@ import { setCourse, setEditCourse, setStep } from '../../../Slices/CourseSlice';
 
 import { addCourseDetails, editCourseDetails } from '../../../Services/Operations/CourseDetailsAPI';
 import toast from 'react-hot-toast';
+import {RiArrowDropRightLine} from "react-icons/ri"
 
 function CourseInformation() {
 
@@ -37,7 +38,7 @@ function CourseInformation() {
             console.log("error message while fetching categories: ",err.message);
         }
     }
-   console.log(category); 
+  /*  console.log(category);  */
 
     const {course, editCourse} = useSelector((state)=>state.course);
 
@@ -76,7 +77,7 @@ function CourseInformation() {
     }
     const{token } = useSelector((state)=>state.auth);
     async function onSubmitHandler(data){
-        console.log(data);
+       /*  console.log(data); */
         if(editCourse){
             if(isFormUpdated){
                 const currentValues = getValues();
@@ -135,7 +136,7 @@ function CourseInformation() {
         formData.append("whatYouWillLearn",data.courseBenefits)
         formData.append("instructions",JSON.stringify(data.courseInstruction));
 
-        console.log(data);
+       /*  console.log(data); */
 
         setLoading(true);
         const result = await addCourseDetails(formData,token);
@@ -145,7 +146,7 @@ function CourseInformation() {
             dispatch(setStep(2));
             dispatch(setCourse(result));
         }
-        console.log("result: ", result);
+        /* console.log("result: ", result); */
     }
 
   return (
@@ -243,7 +244,7 @@ function CourseInformation() {
 
            <Upload
             name={"courseImage"}
-            np
+            label = "Course Thumbnail"
             register={register}
             errors={errors}
             setValue={setValue}
@@ -275,7 +276,7 @@ function CourseInformation() {
              setValue = {setValue}
             />
 
-            <div>
+            <div className='flex justify-end items-center gap-x-3 mr-3'>
                 {
                     editCourse && (
                         <button
@@ -286,10 +287,11 @@ function CourseInformation() {
                     )
                 }
 
-                 <button type='submit'>
+                 <button type='submit' className='bg-yellow-50 flex items-center gap-x-1 py-2 px-4 rounded-md text-richblue-900'>
                     {
                         editCourse?("Save Changes"):("Next")
                     }
+                    <RiArrowDropRightLine size={24} className='-mb-0.5'/>
                  </button>
                 
             </div>
