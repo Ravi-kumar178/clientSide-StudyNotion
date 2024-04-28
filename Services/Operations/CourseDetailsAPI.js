@@ -119,11 +119,13 @@ export const addCourseDetails = async (data, token) => {
 export const editCourseDetails = async (data, token) => {
   let result = null;
   const toastId = toast.loading("Loading...");
+  
   try {
     const response = await apiConnector("POST", EDIT_COURSE_API, data, {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
     });
+    console.log("response: ",response);
     console.log("EDIT COURSE API RESPONSE............", response);
     if (!response?.data?.success) {
       throw new Error("Could Not Update Course Details");

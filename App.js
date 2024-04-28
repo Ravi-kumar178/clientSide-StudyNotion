@@ -19,6 +19,7 @@ import MyProfile from "./Component/Dashboard/MyProfile";
 import Wishlist from "./Component/Dashboard/Wishlist";
 import Settings from "./Component/Dashboard/Settings/Index";
 import AddCourse from './Component/Dashboard/AddCourse'
+import MyCourse from "./Component/Dashboard/MyCourse/MyCourse";
 
 function App() {
 
@@ -83,6 +84,15 @@ function App() {
                user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && 
                (
                   <Route path="/dashboard/add-course" element={<AddCourse/>}/>
+                  
+               )
+            }
+
+            
+            {
+               user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && 
+               (
+                  <Route path="/dashboard/my-courses" element={<MyCourse/>}/>
                )
             }
 

@@ -54,25 +54,25 @@ function NestedView({handleChangeEditSectionName}) {
   return (
     <div className='w-full'>
        
-        <div className='w-90% mx-auto bg-richblack-700 border border-richblack-600'>
+        <div className='w-[95%] mx-auto bg-richblack-700 border  border-richblack-600 rounded-md py-3'>
             {
                 course?.courseContent?.map((section)=>{
                     console.log("section in nested view: ", section);
                     return(
                         <details key={section._id} open>
                          <summary
-                           className='flex justify-between items-center px-2 border-b border-b-richblack-200 pb-2'
+                           className='flex justify-between items-center px-2 border-b border-b-richblack-500 pb-4 w-[95%] mx-auto'
                          >
                             <div className='flex items-center gap-x-3'>
-                                <RxDropdownMenu/>
-                                <p>{section.sectionName}</p>
+                                <RxDropdownMenu size={20} className='text-richblack-300'/>
+                                <p className='font-inter font-semibold text-richblack-100'>{section.sectionName}</p>
                             </div>
 
                             <div className='flex items-center gap-x-3'>
                                 <button
                                  onClick={()=>handleChangeEditSectionName(section.sectionName, section._id)}
                                 >
-                                    <MdEdit/>
+                                    <MdEdit size={20} className='text-richblack-300'/>
                                 </button>
 
                                 <button
@@ -86,25 +86,25 @@ function NestedView({handleChangeEditSectionName}) {
                                   })}
                                   className='border-r border-r-richblack-100 pr-3'
                                 >
-                                  <RiDeleteBin6Line/>
+                                  <RiDeleteBin6Line size={20} className='text-richblack-300'/>
                                 </button>
 
-                                <BiSolidDownArrow/>
+                                <BiSolidDownArrow size={20} className='text-richblack-300'/>
                             </div>
 
                          </summary>
 
-                         <div>
+                         <div className='w-[95%] mx-auto'>
                             {
                                 section.subSection.map((data)=>{
                                     console.log("subsection in nested view: ",data);
                                     return(
                                         <div key={data._id}
                                      onClick={()=>{setViewSubSection(data)}}
-                                    className='flex justify-between items-center p-2 border-b border-b-richblack-400'>
+                                    className='w-[95%] mx-auto flex justify-between items-center p-2 border-b border-b-richblack-400'>
                                         <div className='flex items-center gap-x-3'>
-                                            <RxDropdownMenu/>
-                                            <p>{data.title}</p>
+                                            <RxDropdownMenu size={20} className='text-richblack-300'/>
+                                            <p className='font-inter  text-richblack-100 font-medium'>{data.title}</p>
                                         </div>
 
                                         <div
@@ -113,7 +113,7 @@ function NestedView({handleChangeEditSectionName}) {
                                             <button
                                              onClick={()=>setEditSubSection({...data,sectionId:section._id})}
                                             >
-                                                <MdEdit/>
+                                                <MdEdit size={20} className='text-richblack-300'/>
                                             </button>
                                             <button
                                              onClick={()=>setConfirmationModal({
@@ -125,7 +125,7 @@ function NestedView({handleChangeEditSectionName}) {
                                                 btn2Handler:()=>{setConfirmationModal(null)}
                                               })}
                                             >
-                                                <RiDeleteBin6Line/>
+                                                <RiDeleteBin6Line size={20} className='text-richblack-300'/>
                                             </button>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@ function NestedView({handleChangeEditSectionName}) {
 
                             <button
                              onClick={()=>{setAddSubSection(section._id)}}
-                            className=' text-yellow-50 flex items-center gap-x-1 m-3 font-inter font-medium'>
+                            className='ml-8 text-yellow-50 flex items-center gap-x-1 m-3 font-inter font-medium'>
                                 <AiOutlinePlus/>
                                 Add Lecture
                             </button>

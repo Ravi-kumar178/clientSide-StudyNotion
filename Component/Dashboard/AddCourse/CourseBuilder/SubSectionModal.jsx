@@ -102,80 +102,80 @@ function SubSectionModal({modalData,setModalData,view=false,add=false,edit=false
 
   console.log("course in subsection",course);
   return (
-    <div>
+    <div  className="fixed rounded-lg inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
+     <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-700  bg-richblack-800">
+        <div className='py-3 px-4 bg-richblack-700 border border-richblack-600 flex flex-row justify-between items-center font-inter text-lg text-richblack-25'>
+          <p>
+            {view && "Viewing"}
+            {edit && "Editing"}
+            {add && "Adding"}
+          </p>
 
-      <div className='flex fle-row justify-between items-center'>
-         <p>
-          {view && "Viewing"}
-          {edit && "Editing"}
-          {add && "Adding"}
-         </p>
+          <button onClick={()=>{setModalData(null)}}>
+            <RxCross2/>
+          </button>
+        </div>
 
-         <button onClick={()=>{setModalData(null)}}>
-           <RxCross2/>
-         </button>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmitHandler)} className='flex flex-col gap-y-5'>
-          <Upload
-           name="lectureVideo"
-           label = "Lecture Video"
-           register={register}
-           setValue={setValue}
-           errors={errors}
-           video = {true}
-           viewData = {view?modalData.videoUrl:null}
-           editData = {edit? modalData.videoUrl:null}
-          />
-
-          <div className='flex flex-col gap-y-1'>
-            <label  className='text-richblack-25 font-inter text-sm'>Lecture Title<sup className='text-pink-200'>*</sup></label>
-            <input 
-             type='text'
-             id='lectureTitle'
-             name='lectureTitle'
-             placeholder='Enter Lecture Title'
-             {...register("lectureTitle",{required:true})}
-             className='pl-3 py-2 text-richblack-100 font-inter font-medium border-b-[1px] border-b-richblack-400 bg-richblack-700 shadow-inner rounded-md'
+        <form onSubmit={handleSubmit(onSubmitHandler)} className='p-8 flex flex-col gap-y-6'>
+            <Upload
+            name="lectureVideo"
+            label = "Lecture Video"
+            register={register}
+            setValue={setValue}
+            errors={errors}
+            video = {true}
+            viewData = {view?modalData.videoUrl:null}
+            editData = {edit? modalData.videoUrl:null}
             />
-            {
-              errors.lectureTitle && (<span>
-                Enter the Lecture Title
-              </span>)
-            }
-          </div>
 
-          <div className='flex flex-col gap-y-1'>
-            <label  className='text-richblack-25 font-inter text-sm'>Lecture description<sup className=' text-pink-200'>*</sup></label>
-            <textarea
-             id='lectureDescription'
-             name='lectureDescription'
-             placeholder='Enter Lecture Description'
-             {...register("lectureDescription",{required:true})}
-             className='pl-3 py-2 text-richblack-100 font-inter font-medium border-b-[1px] border-b-richblack-400 bg-richblack-700 shadow-inner rounded-md'
-            />
-            {
-              errors.lectureDescription && (
-                <span>Lecture Description is required</span>
-              )
-            }
-          </div>
-
-            <div className='flex items-center justify-end mr-5 gap-x-3'>
-              <button
-               onClick={()=>{setModalData(null)}}
-              className='font-inter  bg-richblack-700 py-1 px-3 text-richblack-5 border-r border-b border-r-richblack-400 border-b-richblack-400 rounded-md'>Cancel</button>
-
+            <div className='flex flex-col gap-y-1'>
+              <label  className='text-richblack-25 font-inter text-sm'>Lecture Title<sup className='text-pink-200'>*</sup></label>
+              <input 
+              type='text'
+              id='lectureTitle'
+              name='lectureTitle'
+              placeholder='Enter Lecture Title'
+              {...register("lectureTitle",{required:true})}
+              className='pl-3 py-2 text-richblack-100 font-inter font-medium border-b-[1px] border-b-richblack-400 bg-richblack-700 shadow-inner rounded-md'
+              />
               {
-                !view && (
-                  <button
-                   className='py-1 px-3 bg-yellow-50 rounded-md font-inter font-medium text-richblack-900'
-                  >{!add?("Save Changes"):("Save")}</button>
+                errors.lectureTitle && (<span>
+                  Enter the Lecture Title
+                </span>)
+              }
+            </div>
+
+            <div className='flex flex-col gap-y-1'>
+              <label  className='text-richblack-25 font-inter text-sm'>Lecture description<sup className=' text-pink-200'>*</sup></label>
+              <textarea
+              id='lectureDescription'
+              name='lectureDescription'
+              placeholder='Enter Lecture Description'
+              {...register("lectureDescription",{required:true})}
+              className='pl-3 py-2 min-h-12 text-richblack-100 font-inter font-medium border-b-[1px] border-b-richblack-400 bg-richblack-700 shadow-inner rounded-md'
+              />
+              {
+                errors.lectureDescription && (
+                  <span>Lecture Description is required</span>
                 )
               }
             </div>
-      </form>
 
+              <div className='flex items-center justify-end mr-5 gap-x-3'>
+                <button
+                onClick={()=>{setModalData(null)}}
+                className='font-inter  bg-richblack-700 py-1 px-3 text-richblack-5 border-r border-b border-r-richblack-400 border-b-richblack-400 rounded-md'>Cancel</button>
+
+                {
+                  !view && (
+                    <button
+                    className='py-1 px-3 bg-yellow-50 rounded-md font-inter font-medium text-richblack-900'
+                    >{!add?("Save Changes"):("Save")}</button>
+                  )
+                }
+              </div>
+        </form>
+      </div> 
     </div>
   )
 }

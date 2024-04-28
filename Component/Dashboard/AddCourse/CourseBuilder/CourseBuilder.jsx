@@ -99,7 +99,7 @@ function CourseBuilder() {
              onSubmit={handleSubmit(onSubmitHandler)}>
                 <div className='flex flex-col gap-y-4'>
                 <label 
-                 className='text-richblack-25 font-inter text-sm'
+                 className='text-richblack-25 font-inter text-2xl font-semibold'
                  htmlFor='sectionName'>Course Builder<sup className='text-pink-200'>*</sup></label>
                     <input
                      type='text'

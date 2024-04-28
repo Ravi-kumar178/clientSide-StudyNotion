@@ -31,7 +31,7 @@ function Sidebar() {
     console.log("logout: ",logout);
     
   return (
-    <div className='pt-4 bg-richblack-800 flex flex-col h-[200vh] w-[222px]'>
+    <div className='pt-4 bg-richblack-800 flex flex-col h-[240vh] w-[222px]'>
         {
             sidebarLinks.map((data,index)=>{
                 if(data.type && user?.accountType !== data.type){

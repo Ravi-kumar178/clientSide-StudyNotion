@@ -28,8 +28,8 @@ function Index() {
     }
 
   return (
-    <div className='w-[1000px] '>
-        <div>
+    <div className='w-[1000px] flex items-start gap-x-8'>
+        <div className='w-full'>
             <div className='flex gap-x-4 items-center'>
                 {
                     array.map((data,index)=>{
@@ -51,18 +51,19 @@ function Index() {
                 <RenderSteps/>
             </div>
         </div>
-        <div className='text-white'>
-            <div>⚡Course Upload Tips</div>
-            <div>
-                <ul>
-                    <li>Set the Course Price option or make it free.</li>
-                    <li>Standard size for the course thumbnail is 1024x576.</li>
-                    <li>Video section controls the course overview video.</li>
-                    <li>Course Builder is where you create & organize a course.</li>
-                    <li>Course Builder is where you create & organize a course.</li>
-                    <li>Information from the Additional Data section shows up on the course single page.</li>
-                    <li>Make Announcements to notify any important</li>
-                    <li>Notes to all enrolled students at once.</li>
+        <div className='text-white w-[70%] p-6 rounded-md bg-richblack-800 border border-richblack-700
+                        flex flex-col gap-y-5 '>
+            <div className='font-inter text-lg font-semibold text-richblack-5'>⚡Course Upload Tips</div>
+            <div className=''>
+                <ul className='ml-6 list-disc flex flex-col gap-y-3'>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Set the Course Price option or make it free.</li>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Standard size for the course thumbnail is 1024x576.</li>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Video section controls the course overview video.</li>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Course Builder is where you create & organize a course.</li>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Course Builder is where you create & organize a course.</li>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Information from the Additional Data section shows up on the course single page.</li>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Make Announcements to notify any important</li>
+                    <li className='text-xs font-inter font-medium text-richblack-25'>Notes to all enrolled students at once.</li>
                 </ul>
             </div>
         </div>
