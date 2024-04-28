@@ -277,16 +277,17 @@ export const editCourseDetails = async (data, token) => {
 }; 
 
 // fetching all courses under a specific instructor
-/* export const fetchInstructorCourses = async (token) => {
+ export const fetchInstructorCourses = async (token) => {
   let result = [];
   const toastId = toast.loading("Loading...");
   try {
+    console.log("token: ",token);
     const response = await apiConnector(
       "GET",
       GET_ALL_INSTRUCTOR_COURSES_API,
       null,
       {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       }
     );
     console.log("INSTRUCTOR COURSES API RESPONSE............", response);
@@ -300,14 +301,14 @@ export const editCourseDetails = async (data, token) => {
   }
   toast.dismiss(toastId);
   return result;
-}; */
+}; 
 
 // delete a course
-/* export const deleteCourse = async (data, token) => {
+ export const deleteCourse = async (data, token) => {
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("DELETE COURSE API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -320,7 +321,7 @@ export const editCourseDetails = async (data, token) => {
   }
   toast.dismiss(toastId);
 };
- */
+ 
 // get full details of a course
 /* export const getFullDetailsOfCourse = async (courseId, token) => {
   const toastId = toast.loading("Loading...");

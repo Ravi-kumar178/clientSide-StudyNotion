@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiCirclePlus } from 'react-icons/ci';
 import { Link, matchPath, useLocation, useNavigate } from 'react-router-dom'
+import { fetchInstructorCourses } from '../../../Services/Operations/CourseDetailsAPI';
+import { useSelector } from 'react-redux';
+import CourseTable from './CourseTable';
 
 function MyCourse() {
 
@@ -25,6 +28,19 @@ function MyCourse() {
    }
 
    const navigate = useNavigate();
+
+   const [courses, setCourses] = useState([]);
+   const{token} = useSelector((state)=>state.auth);
+   useEffect(()=>{
+    const fetchInstructorCourseDetail = async()=>{
+        const result = await fetchInstructorCourses(token);
+        if(result){
+            setCourses(result);
+        }
+        console.log("courses in myCourse: ",courses);
+    }
+    fetchInstructorCourseDetail();
+   },[]);
 
   return (
     <div className='px-8 w-[1000px]'>
@@ -54,7 +70,9 @@ function MyCourse() {
         </div>
 
         {/*table */}
-        <div></div>
+        <div>
+            <CourseTable courses={courses} setCourses={setCourses}/>
+        </div>
     </div>
   )
 }
