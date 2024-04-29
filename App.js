@@ -20,6 +20,8 @@ import Wishlist from "./Component/Dashboard/Wishlist";
 import Settings from "./Component/Dashboard/Settings/Index";
 import AddCourse from './Component/Dashboard/AddCourse'
 import MyCourse from "./Component/Dashboard/MyCourse/MyCourse";
+import EditCourse from "./Component/Dashboard/EditCourse/EditCourse";
+import { Catalog } from "./Pages/Catalog";
 
 function App() {
 
@@ -30,6 +32,7 @@ function App() {
       <Navbar/>
        <Routes>
           <Route path="/" element={<HomePage/>}/>
+          <Route path="/catalog/:catalogName" element={<Catalog/>} />
 
           <Route path="/login" 
              element={
@@ -93,6 +96,14 @@ function App() {
                user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && 
                (
                   <Route path="/dashboard/my-courses" element={<MyCourse/>}/>
+               )
+            }
+
+
+            {
+               user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && 
+               (
+                  <Route path="/dashboard/edit-course/:courseId" element={<EditCourse/>}/>
                )
             }
 

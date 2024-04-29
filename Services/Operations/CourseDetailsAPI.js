@@ -323,7 +323,7 @@ export const editCourseDetails = async (data, token) => {
 };
  
 // get full details of a course
-/* export const getFullDetailsOfCourse = async (courseId, token) => {
+ export const getFullDetailsOfCourse = async (courseId, token) => {
   const toastId = toast.loading("Loading...");
   //   dispatch(setLoading(true));
   let result = null;
@@ -335,7 +335,7 @@ export const editCourseDetails = async (data, token) => {
         courseId,
       },
       {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       }
     );
     console.log("COURSE_FULL_DETAILS_API API RESPONSE............", response);
@@ -352,7 +352,7 @@ export const editCourseDetails = async (data, token) => {
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));
   return result;
-}; */
+}; 
 
 // mark a lecture as complete
 /* export const markLectureAsComplete = async (data, token) => {

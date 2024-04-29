@@ -13,8 +13,8 @@ function ChipInput({label,name,placeholder,register,errors,setValue,getValues}) 
             required: true
         })
         if(editCourse){
-            setTags(JSON.parse(course.tags));
-            setValue(name,JSON.parse(course.tags));
+            setTags(JSON.parse(course?.tags));
+            setValue(name,JSON.parse(course?.tags));
         }
     },[]);
 
@@ -26,7 +26,7 @@ function ChipInput({label,name,placeholder,register,errors,setValue,getValues}) 
 
          <div className='flex flex-row items-center gap-x-3'>
             {
-                tags.map((data,index)=>{
+              tags !== undefined &&  tags.map((data,index)=>{
                     return(
                         <div key={index} className='flex items-center gap-x-1 bg-yellow-100 px-2 text-richblack-900 rounded-full'>
                             <div className='mb-[3px]'>{data}</div>

@@ -4,6 +4,10 @@ export const categories = {
     CATEGORIES_API: BASE_URL + "/course/showAllCategories",
 }
 
+export const catalogPageApi = {
+    CATALOG_PAGEDATA_API :BASE_URL + "/course/getCategoryPageDetails"
+}
+
 export const endPoints = {
     LOGIN_API : BASE_URL + "/auth/login",
     SENDOTP_API: BASE_URL+"/auth/sendotp",

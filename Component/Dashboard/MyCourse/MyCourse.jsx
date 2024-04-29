@@ -34,13 +34,16 @@ function MyCourse() {
    useEffect(()=>{
     const fetchInstructorCourseDetail = async()=>{
         const result = await fetchInstructorCourses(token);
+        console.log(result);
         if(result){
             setCourses(result);
         }
-        console.log("courses in myCourse: ",courses);
+       
     }
     fetchInstructorCourseDetail();
    },[]);
+
+   console.log("courses in myCourse: ",courses);
 
   return (
     <div className='px-8 w-[1000px]'>
